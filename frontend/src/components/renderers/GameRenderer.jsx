@@ -8,6 +8,7 @@ import OddType from '../../games/odd-type/OddType.jsx';
 import TypeMatchup from '../../games/type-matchup/TypeMatchup.jsx';
 import SuperEffective from '../../games/super-effective/SuperEffective.jsx';
 import Silhouette from '../../games/silhouette/Silhouette.jsx';
+import EvoOrder from '../../games/evo-order/EvoOrder.jsx';
 
 const RENDERERS = {
   TypeQuiz,
@@ -16,6 +17,7 @@ const RENDERERS = {
   TypeMatchup,
   SuperEffective,
   Silhouette,
+  EvoOrder,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {
