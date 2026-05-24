@@ -1,0 +1,68 @@
+/* games/ability-match/ability-match.css */
+
+.am-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+.am-ability-badge {
+  padding: 14px 28px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-yellow);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 4vw, 22px);
+  color: var(--color-yellow);
+  text-align: center;
+  box-shadow: 0 0 20px var(--color-yellow-glow);
+  letter-spacing: 0.02em;
+}
+
+.am-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 380px;
+}
+
+.am-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
+}
+
+.am-card:hover:not(:disabled) {
+  border-color: var(--color-yellow);
+  background: var(--color-bg-card);
+  transform: translateY(-2px);
+}
+
+.am-card:active:not(:disabled) { transform: scale(0.97); }
+.am-card:disabled { cursor: default; opacity: 0.6; }
+
+.am-sprite {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: sprite-bounce 0.3s ease both;
+}
+
+.am-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-align: center;
+}

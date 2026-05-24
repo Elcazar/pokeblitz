@@ -1,7 +1,6 @@
 // scripts/fetch-pokemon-data.mjs
 // Run with: node scripts/fetch-pokemon-data.mjs
 // Downloads Pokemon data from PokeAPI and saves it as a static JSON file.
-// This script is meant to be run once (or when updating the dataset).
 // User-specific data (favorite Pokemon, etc.) is handled by the backend.
 
 import fs from 'fs/promises';
@@ -9,7 +8,7 @@ import path from 'path';
 
 const TOTAL_POKEMON = 1025;
 const OUTPUT_PATH = './frontend/src/data/pokemon.json';
-const DELAY_MS = 10;
+const DELAY_MS = 1;
 
 const TYPE_TRANSLATIONS = {
   normal: 'normal', fire: 'fuego', water: 'agua', electric: 'electrico',
@@ -66,6 +65,28 @@ function extractStats(statsArray) {
   );
 }
 
+// Cache ability translations to avoid refetching the same ability multiple times
+const abilityCache = new Map();
+
+async function getAbilityNames(abilityName) {
+  if (abilityCache.has(abilityName)) {
+    return abilityCache.get(abilityName);
+  }
+
+  try {
+    const data = await fetchJSON(`https://pokeapi.co/api/v2/ability/${abilityName}`);
+    const nameEs = data.names.find((n) => n.language.name === 'es')?.name ?? abilityName;
+    const nameEn = data.names.find((n) => n.language.name === 'en')?.name ?? abilityName;
+    const result = { en: nameEn, es: nameEs };
+    abilityCache.set(abilityName, result);
+    return result;
+  } catch {
+    const result = { en: abilityName, es: abilityName };
+    abilityCache.set(abilityName, result);
+    return result;
+  }
+}
+
 async function fetchPokemon(id) {
   try {
     const [pokemon, species] = await Promise.all([
@@ -76,6 +97,14 @@ async function fetchPokemon(id) {
     const evolutionChain = await getEvolutionChain(species.evolution_chain.url);
     const typesEn = pokemon.types.map((t) => t.type.name);
     const typesEs = typesEn.map((t) => TYPE_TRANSLATIONS[t] ?? t);
+
+    // Fetch ability names in both languages
+    const abilities = await Promise.all(
+      pokemon.abilities.map(async (a) => ({
+        name: await getAbilityNames(a.ability.name),
+        isHidden: a.is_hidden,
+      }))
+    );
 
     return {
       id,
@@ -89,6 +118,7 @@ async function fetchPokemon(id) {
       isLegendary: species.is_legendary,
       isMythical: species.is_mythical,
       stats: extractStats(pokemon.stats),
+      abilities,
       pokedexEntry: {
         en: getPokedexEntry(species.flavor_text_entries, 'en'),
         es: getPokedexEntry(species.flavor_text_entries, 'es'),
@@ -114,6 +144,7 @@ async function main() {
   }
 
   console.log(`\nDone: ${results.length} Pokemon downloaded`);
+  console.log(`Ability cache size: ${abilityCache.size} unique abilities fetched`);
   await fs.mkdir(path.dirname(OUTPUT_PATH), { recursive: true });
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(results, null, 2));
   console.log(`Saved to ${OUTPUT_PATH}`);

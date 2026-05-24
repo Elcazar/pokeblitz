@@ -28,7 +28,9 @@ import CheckpointScreen from './screens/CheckpointScreen.jsx';
 // import './games/evo-order/index.js';
 // import './games/stat-compare/index.js';
 // import './games/dex-entry/index.js';
-import './games/count-type/index.js';
+// import './games/count-type/index.js';
+import './games/ability-quiz/index.js';
+import './games/ability-match/index.js';
 
 function Game() {
   const { lang } = useLang();

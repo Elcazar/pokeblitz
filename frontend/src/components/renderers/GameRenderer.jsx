@@ -12,6 +12,8 @@ import EvoOrder from '../../games/evo-order/EvoOrder.jsx';
 import StatCompare from '../../games/stat-compare/StatCompare.jsx';
 import DexEntry from '../../games/dex-entry/DexEntry.jsx';
 import CountType from '../../games/count-type/CountType.jsx';
+import AbilityQuiz from '../../games/ability-quiz/AbilityQuiz.jsx';
+import AbilityMatch from '../../games/ability-match/AbilityMatch.jsx';
 
 const RENDERERS = {
   TypeQuiz,
@@ -24,6 +26,8 @@ const RENDERERS = {
   StatCompare,
   DexEntry,
   CountType,
+  AbilityQuiz,
+  AbilityMatch,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {
