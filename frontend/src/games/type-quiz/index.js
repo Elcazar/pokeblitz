@@ -35,10 +35,16 @@ registerGame({
     const wrongPool = allTypes.filter((t) => !targetTypes.includes(t));
 
     const totalOptions = isDual ? 6 : 4;
+    // Ensure BOTH correct types are always in the options
     const options = buildOptions(targetTypes[0], wrongPool, totalOptions);
 
     if (isDual && !options.includes(targetTypes[1])) {
       options[options.length - 1] = targetTypes[1];
+    }
+
+    // Also ensure the first type is present (buildOptions may have shuffled it out)
+    if (isDual && !options.includes(targetTypes[0])) {
+      options[options.length - 2] = targetTypes[0];
     }
 
     options.sort(() => Math.random() - 0.5);
