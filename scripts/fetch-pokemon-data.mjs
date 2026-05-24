@@ -1,0 +1,137 @@
+// scripts/fetch-pokemon-data.mjs
+// Run with: node scripts/fetch-pokemon-data.mjs
+// Downloads Pokemon data from PokeAPI and saves it as a static JSON file.
+// This script is meant to be run once (or when updating the dataset).
+// User-specific data (favorite Pokemon, etc.) is handled by the backend.
+
+import fs from 'fs/promises';
+import path from 'path';
+
+const TOTAL_POKEMON = 1025;
+const OUTPUT_PATH = './frontend/src/data/pokemon.json';
+const DELAY_MS = 100;
+
+const TYPE_TRANSLATIONS = {
+  normal: 'normal',
+  fire: 'fuego',
+  water: 'agua',
+  electric: 'electrico',
+  grass: 'planta',
+  ice: 'hielo',
+  fighting: 'lucha',
+  poison: 'veneno',
+  ground: 'tierra',
+  flying: 'volador',
+  psychic: 'psiquico',
+  bug: 'bicho',
+  rock: 'roca',
+  ghost: 'fantasma',
+  dragon: 'dragon',
+  dark: 'siniestro',
+  steel: 'acero',
+  fairy: 'hada',
+};
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function fetchJSON(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
+  return res.json();
+}
+
+function getSpanishName(names) {
+  return names.find((n) => n.language.name === 'es')?.name ?? null;
+}
+
+function cleanText(text) {
+  return text?.replace(/\n|\f/g, ' ') ?? '';
+}
+
+function getPokedexEntry(entries, lang) {
+  return cleanText(
+    entries.find((e) => e.language.name === lang)?.flavor_text
+  );
+}
+
+async function getEvolutionChain(chainUrl) {
+  const data = await fetchJSON(chainUrl);
+  const ids = [];
+  let current = data.chain;
+
+  while (current) {
+    const id = parseInt(current.species.url.split('/').filter(Boolean).pop());
+    ids.push(id);
+    current = current.evolves_to[0] ?? null;
+  }
+
+  return ids;
+}
+
+function extractIdFromUrl(url) {
+  return parseInt(url.split('/').filter(Boolean).pop());
+}
+
+async function fetchPokemon(id) {
+  try {
+    const [pokemon, species] = await Promise.all([
+      fetchJSON(`https://pokeapi.co/api/v2/pokemon/${id}`),
+      fetchJSON(`https://pokeapi.co/api/v2/pokemon-species/${id}`),
+    ]);
+
+    const evolutionChain = await getEvolutionChain(species.evolution_chain.url);
+
+    const typesEn = pokemon.types.map((t) => t.type.name);
+    const typesEs = typesEn.map((t) => TYPE_TRANSLATIONS[t] ?? t);
+
+    // Take the first 15 moves as a representative sample for minigames.
+    // Move name translations would require an extra API call per move,
+    // so we store English names only for now and translate on demand later.
+    const moves = pokemon.moves.slice(0, 15).map((m) => m.move.name);
+
+    return {
+      id,
+      name: {
+        en: pokemon.name,
+        es: getSpanishName(species.names) ?? pokemon.name,
+      },
+      types: {
+        en: typesEn,
+        es: typesEs,
+      },
+      generation: extractIdFromUrl(species.generation.url),
+      evolutionChain,
+      isLegendary: species.is_legendary,
+      isMythical: species.is_mythical,
+      moves,
+      pokedexEntry: {
+        en: getPokedexEntry(species.flavor_text_entries, 'en'),
+        es: getPokedexEntry(species.flavor_text_entries, 'es'),
+      },
+      spriteUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+      spriteShinyUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${id}.png`,
+    };
+  } catch (err) {
+    console.error(`Error on Pokemon #${id}:`, err.message);
+    return null;
+  }
+}
+
+async function main() {
+  console.log(`Downloading data for ${TOTAL_POKEMON} Pokemon...`);
+  const results = [];
+
+  for (let id = 1; id <= TOTAL_POKEMON; id++) {
+    process.stdout.write(`\r  Pokemon ${id}/${TOTAL_POKEMON}`);
+    const data = await fetchPokemon(id);
+    if (data) results.push(data);
+    await sleep(DELAY_MS);
+  }
+
+  console.log(`\nDone: ${results.length} Pokemon downloaded`);
+  await fs.mkdir(path.dirname(OUTPUT_PATH), { recursive: true });
+  await fs.writeFile(OUTPUT_PATH, JSON.stringify(results, null, 2));
+  console.log(`Saved to ${OUTPUT_PATH}`);
+}
+
+main();
