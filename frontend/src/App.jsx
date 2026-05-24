@@ -26,6 +26,7 @@ import './games/type-matchup/index.js';
 import './games/super-effective/index.js';
 import './games/silhouette/index.js';
 import './games/evo-order/index.js';
+import './games/stat-compare/index.js';
 
 function Game() {
   const { lang } = useLang();

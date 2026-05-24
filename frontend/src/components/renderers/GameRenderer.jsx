@@ -9,6 +9,7 @@ import TypeMatchup from '../../games/type-matchup/TypeMatchup.jsx';
 import SuperEffective from '../../games/super-effective/SuperEffective.jsx';
 import Silhouette from '../../games/silhouette/Silhouette.jsx';
 import EvoOrder from '../../games/evo-order/EvoOrder.jsx';
+import StatCompare from '../../games/stat-compare/StatCompare.jsx';
 
 const RENDERERS = {
   TypeQuiz,
@@ -18,6 +19,7 @@ const RENDERERS = {
   SuperEffective,
   Silhouette,
   EvoOrder,
+  StatCompare,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {
