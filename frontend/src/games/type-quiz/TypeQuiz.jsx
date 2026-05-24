@@ -41,7 +41,7 @@ export default function TypeChoice({ spriteUrl, options, correctTypes, isDual, o
     <div className="tc-container">
       {spriteUrl && (
         <img
-          className="mc-sprite"
+          className="tc-sprite"
           src={spriteUrl}
           alt="Pokemon sprite"
           draggable={false}

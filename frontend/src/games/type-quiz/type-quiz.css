@@ -54,3 +54,12 @@
   color: var(--color-text-muted);
   letter-spacing: 0.1em;
 }
+
+.tc-sprite {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+  animation: sprite-bounce 0.3s ease both;
+}

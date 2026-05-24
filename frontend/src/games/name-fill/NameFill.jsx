@@ -106,7 +106,7 @@ export default function NameFill({ spriteUrl, hint, displayName, onAnswer, disab
     <div className="nf-container" onClick={focusInput}>
       {spriteUrl && (
         <img
-          className="mc-sprite"
+          className="nf-sprite"
           src={spriteUrl}
           alt="Pokemon sprite"
           draggable={false}
