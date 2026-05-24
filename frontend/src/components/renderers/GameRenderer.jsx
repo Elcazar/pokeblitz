@@ -11,6 +11,7 @@ import Silhouette from '../../games/silhouette/Silhouette.jsx';
 import EvoOrder from '../../games/evo-order/EvoOrder.jsx';
 import StatCompare from '../../games/stat-compare/StatCompare.jsx';
 import DexEntry from '../../games/dex-entry/DexEntry.jsx';
+import CountType from '../../games/count-type/CountType.jsx';
 
 const RENDERERS = {
   TypeQuiz,
@@ -22,6 +23,7 @@ const RENDERERS = {
   EvoOrder,
   StatCompare,
   DexEntry,
+  CountType,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {
