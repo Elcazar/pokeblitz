@@ -146,10 +146,14 @@ export function filterPokemon(pokemon, filter = {}) {
   }
 
   if (filter.types?.length) {
-    // Always filter by English type names for consistency
     pool = pool.filter((p) =>
       p.types.en.some((t) => filter.types.includes(t))
     );
+  }
+
+  // Exclude alternate forms (names containing a dash, e.g. rotom-wash)
+  if (filter.excludeForms) {
+    pool = pool.filter((p) => !p.name.en.includes('-'));
   }
 
   if (pool.length === 0) {

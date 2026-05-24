@@ -36,6 +36,7 @@ registerGame({
   baseTimeMs:   9000,  // typing takes longer than tapping
   minDifficulty: 0,
   pokemonFilter: {},
+  pokemonFilter: { excludeForms: true },
 
   build({ pokemon, lang }) {
     const target = getRandom(pokemon);
