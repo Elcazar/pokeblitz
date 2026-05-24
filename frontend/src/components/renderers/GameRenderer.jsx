@@ -5,11 +5,13 @@
 import TypeQuiz from '../../games/type-quiz/TypeQuiz.jsx';
 import NameFill from '../../games/name-fill/NameFill.jsx';
 import OddType from '../../games/odd-type/OddType.jsx';
+import TypeMatchup from '../../games/type-matchup/TypeMatchup.jsx';
 
 const RENDERERS = {
   TypeQuiz,
   NameFill,
   OddType,
+  TypeMatchup,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {

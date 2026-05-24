@@ -18,10 +18,11 @@ import GameOverScreen from './screens/GameOverScreen.jsx';
 import InterludeScreen from './screens/InterludeScreen.jsx';
 import CheckpointScreen from './screens/CheckpointScreen.jsx';
 
-// Register all minigames (side-effect imports)
+// Register all microgames (side-effect imports)
 import './games/type-quiz/index.js';
 import './games/name-fill/index.js';
 import './games/odd-type/index.js';
+import './games/type-matchup/index.js';
 
 function Game() {
   const { lang } = useLang();
