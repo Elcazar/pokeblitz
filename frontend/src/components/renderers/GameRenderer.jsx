@@ -10,6 +10,7 @@ import SuperEffective from '../../games/super-effective/SuperEffective.jsx';
 import Silhouette from '../../games/silhouette/Silhouette.jsx';
 import EvoOrder from '../../games/evo-order/EvoOrder.jsx';
 import StatCompare from '../../games/stat-compare/StatCompare.jsx';
+import DexEntry from '../../games/dex-entry/DexEntry.jsx';
 
 const RENDERERS = {
   TypeQuiz,
@@ -20,6 +21,7 @@ const RENDERERS = {
   Silhouette,
   EvoOrder,
   StatCompare,
+  DexEntry,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {

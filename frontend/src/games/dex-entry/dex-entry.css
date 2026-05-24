@@ -1,0 +1,76 @@
+/* games/dex-entry/dex-entry.css */
+
+.de-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  gap: var(--space-md);
+}
+
+.de-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  width: 100%;
+  max-width: 420px;
+}
+
+.de-entry-icon {
+  font-size: 24px;
+}
+
+.de-entry-text {
+  font-size: 22px;
+  line-height: 1.7;
+  color: var(--color-text);
+  text-align: center;
+  font-style: italic;
+}
+
+.de-reveal-sprite {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 20px rgba(255, 209, 26, 0.4));
+  animation: sprite-bounce 0.3s ease both;
+}
+
+.de-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 380px;
+}
+
+.de-btn {
+  padding: 14px 12px;
+  background: var(--type-bg);
+  color: var(--type-color);
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 0.02em;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.de-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.de-btn:active:not(:disabled) { transform: scale(0.97); }
+.de-btn:disabled { cursor: default; opacity: 0.6; }
