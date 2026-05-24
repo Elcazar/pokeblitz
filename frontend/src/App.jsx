@@ -21,6 +21,7 @@ import CheckpointScreen from './screens/CheckpointScreen.jsx';
 // Register all microgames (side-effect imports)
 import './games/type-quiz/index.js';
 import './games/name-fill/index.js';
+import './games/odd-type/index.js';
 
 function Game() {
   const { lang } = useLang();
