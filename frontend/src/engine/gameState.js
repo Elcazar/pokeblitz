@@ -17,29 +17,29 @@ export const initialState = {
   streak: 0,
   gamesPlayed: 0,
   currentGame: null,
-  lastResult: null,       // 'win' | 'lose' | null
-  checkpointPokemon: null, // random Pokemon shown on checkpoint screen
+  lastResult: null,
+  checkpointPokemon: null,
+  // History of every game played in this run
+  // Each entry: { gameId, instruction, result: 'win' | 'lose' }
+  history: [],
 };
 
 export const ACTIONS = {
-  START_GAME:         'START_GAME',
-  LOAD_GAME:          'LOAD_GAME',
-  WIN:                'WIN',
-  LOSE:               'LOSE',
-  SHOW_INTERLUDE:     'SHOW_INTERLUDE',
-  SHOW_CHECKPOINT:    'SHOW_CHECKPOINT',
-  NEXT_GAME:          'NEXT_GAME',
-  GAME_OVER:          'GAME_OVER',
+  START_GAME:      'START_GAME',
+  LOAD_GAME:       'LOAD_GAME',
+  WIN:             'WIN',
+  LOSE:            'LOSE',
+  SHOW_INTERLUDE:  'SHOW_INTERLUDE',
+  SHOW_CHECKPOINT: 'SHOW_CHECKPOINT',
+  NEXT_GAME:       'NEXT_GAME',
+  GAME_OVER:       'GAME_OVER',
 };
 
 export function gameReducer(state, action) {
   switch (action.type) {
 
     case ACTIONS.START_GAME:
-      return {
-        ...initialState,
-        status: GAME_STATE.PLAYING,
-      };
+      return { ...initialState, status: GAME_STATE.PLAYING };
 
     case ACTIONS.LOAD_GAME:
       return {
@@ -62,6 +62,16 @@ export function gameReducer(state, action) {
         streak: state.streak + 1,
         gamesPlayed: state.gamesPlayed + 1,
         lastResult: 'win',
+        history: [
+          ...state.history,
+          {
+            gameId: state.currentGame?.id,
+            instruction: state.currentGame?.instruction,
+            component: state.currentGame?.component,
+            props: state.currentGame?.props,
+            result: 'win',
+          },
+        ],
       };
     }
 
@@ -73,13 +83,20 @@ export function gameReducer(state, action) {
         streak: 0,
         gamesPlayed: state.gamesPlayed + 1,
         lastResult: 'lose',
+        history: [
+          ...state.history,
+          {
+            gameId: state.currentGame?.id,
+            instruction: state.currentGame?.instruction,
+            component: state.currentGame?.component,
+            props: state.currentGame?.props,
+            result: 'lose',
+          },
+        ],
       };
 
     case ACTIONS.SHOW_INTERLUDE:
-      return {
-        ...state,
-        status: GAME_STATE.INTERLUDE,
-      };
+      return { ...state, status: GAME_STATE.INTERLUDE };
 
     case ACTIONS.SHOW_CHECKPOINT:
       return {
@@ -98,10 +115,7 @@ export function gameReducer(state, action) {
       };
 
     case ACTIONS.GAME_OVER:
-      return {
-        ...state,
-        status: GAME_STATE.GAME_OVER,
-      };
+      return { ...state, status: GAME_STATE.GAME_OVER };
 
     default:
       return state;

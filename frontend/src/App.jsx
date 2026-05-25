@@ -86,6 +86,7 @@ function Game() {
         <GameOverScreen
           score={state.score}
           gamesPlayed={state.gamesPlayed}
+          history={state.history}
           onRestart={startGame}
         />
       );
