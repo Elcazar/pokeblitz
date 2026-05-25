@@ -19,18 +19,20 @@ import InterludeScreen from './screens/InterludeScreen.jsx';
 import CheckpointScreen from './screens/CheckpointScreen.jsx';
 
 // Register all microgames (side-effect imports)
-// import './games/type-quiz/index.js';
-// import './games/name-fill/index.js';
-// import './games/odd-type/index.js';
-// import './games/type-matchup/index.js';
-// import './games/super-effective/index.js';
-// import './games/silhouette/index.js';
-// import './games/evo-order/index.js';
-// import './games/stat-compare/index.js';
-// import './games/dex-entry/index.js';
-// import './games/count-type/index.js';
+import './games/type-quiz/index.js';
+import './games/name-fill/index.js';
+import './games/odd-type/index.js';
+import './games/type-matchup/index.js';
+import './games/super-effective/index.js';
+import './games/silhouette/index.js';
+import './games/evo-order/index.js';
+import './games/stat-compare/index.js';
+import './games/dex-entry/index.js';
+import './games/count-type/index.js';
 import './games/ability-quiz/index.js';
 import './games/ability-match/index.js';
+import './games/gen-quiz/index.js';
+import './games/gen-match/index.js';
 
 function Game() {
   const { lang } = useLang();

@@ -1,0 +1,49 @@
+/* games/gen-quiz/gen-quiz.css */
+
+.gq-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+.gq-sprite {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+  animation: sprite-bounce 0.3s ease both;
+}
+
+.gq-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 380px;
+}
+
+.gq-btn {
+  padding: 16px 12px;
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.gq-btn:hover:not(:disabled) {
+  background: var(--color-bg-card);
+  border-color: var(--color-yellow);
+  color: var(--color-yellow);
+  transform: translateY(-1px);
+}
+
+.gq-btn:active:not(:disabled) { transform: scale(0.97); }
+.gq-btn:disabled { cursor: default; opacity: 0.6; }

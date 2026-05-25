@@ -14,20 +14,13 @@ import DexEntry from '../../games/dex-entry/DexEntry.jsx';
 import CountType from '../../games/count-type/CountType.jsx';
 import AbilityQuiz from '../../games/ability-quiz/AbilityQuiz.jsx';
 import AbilityMatch from '../../games/ability-match/AbilityMatch.jsx';
+import GenQuiz from '../../games/gen-quiz/GenQuiz.jsx';
+import GenMatch from '../../games/gen-match/GenMatch.jsx';
 
 const RENDERERS = {
-  TypeQuiz,
-  NameFill,
-  OddType,
-  TypeMatchup,
-  SuperEffective,
-  Silhouette,
-  EvoOrder,
-  StatCompare,
-  DexEntry,
-  CountType,
-  AbilityQuiz,
-  AbilityMatch,
+  TypeQuiz, NameFill, OddType, TypeMatchup, SuperEffective,
+  Silhouette, EvoOrder, StatCompare, DexEntry, CountType,
+  AbilityQuiz, AbilityMatch, GenQuiz, GenMatch,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {
