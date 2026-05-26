@@ -42,12 +42,14 @@ registerGame({
       id: target.id,
       name: lang === 'en' ? capitalize(target.name.en) : target.name.es,
       spriteUrl: target.spriteUrl,
+      isCorrect: true,
     };
 
     const wrongOptions = wrongPokemon.map((p) => ({
       id: p.id,
       name: lang === 'en' ? capitalize(p.name.en) : p.name.es,
       spriteUrl: p.spriteUrl,
+      isCorrect: false,
     }));
 
     const options = shuffle([correctOption, ...wrongOptions]);

@@ -29,7 +29,7 @@ import CheckpointScreen from './screens/CheckpointScreen.jsx';
 // import './games/stat-compare/index.js';
 // import './games/dex-entry/index.js';
 // import './games/count-type/index.js';
-import './games/ability-quiz/index.js';
+// import './games/ability-quiz/index.js';
 // import './games/ability-match/index.js';
 // import './games/gen-quiz/index.js';
 // import './games/gen-match/index.js';

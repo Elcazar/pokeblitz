@@ -66,3 +66,7 @@
   color: var(--color-text-muted);
   text-align: center;
 }
+
+.am-card--correct { border-color: var(--color-green); background: #1e3a1e; opacity: 1 !important; }
+.am-card--wrong   { border-color: var(--color-red);   background: #3a1f1f; opacity: 1 !important; }
+.am-card--dim     { opacity: 0.4; }
