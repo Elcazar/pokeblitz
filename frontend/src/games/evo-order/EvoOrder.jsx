@@ -66,11 +66,14 @@ export default function EvoOrder({ options, correctOrder, selectedAnswer, onAnsw
         ))}
       </div>
 
-      {!disabled && (
-        <button className="eo-submit btn-primary" onClick={handleSubmit}>
+        <button
+          className="eo-submit btn-primary"
+          onClick={handleSubmit}
+          disabled={disabled}
+          style={{ visibility: disabled ? 'hidden' : 'visible' }}
+        >
           OK
         </button>
-      )}
     </div>
   );
 }
