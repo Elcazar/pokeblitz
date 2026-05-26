@@ -82,3 +82,6 @@
   font-size: 16px;
   padding: 12px 48px;
 }
+
+.eo-card--correct { border-color: var(--color-green); background: #1e3a1e; opacity: 1 !important; }
+.eo-card--wrong   { border-color: var(--color-red);   background: #3a1f1f; opacity: 1 !important; }

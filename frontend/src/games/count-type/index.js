@@ -67,6 +67,7 @@ registerGame({
           selectedIds.length === correctIds.length &&
           correctIds.every((id) => selectedIds.includes(id))
         );
+        
       },
     };
   },
