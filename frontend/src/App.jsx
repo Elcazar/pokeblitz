@@ -20,8 +20,8 @@ import CheckpointScreen from './screens/CheckpointScreen.jsx';
 
 // Register all microgames (side-effect imports)
 // import './games/type-quiz/index.js';
-import './games/name-fill/index.js';
-// import './games/odd-type/index.js';
+// import './games/name-fill/index.js';
+import './games/odd-type/index.js';
 // import './games/type-matchup/index.js';
 // import './games/super-effective/index.js';
 // import './games/silhouette/index.js';

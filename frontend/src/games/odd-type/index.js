@@ -7,8 +7,8 @@ import { registerGame } from '../registry.js';
 import { getRandom, getRandomN, shuffle, capitalize } from '../../data/pokemonHelpers.js';
 
 const INSTRUCTIONS = {
-  en: 'Which one has a different type?',
-  es: 'Cual no comparte tipo?',
+  en: 'Tap the odd one out!',
+  es: 'Toca el que no encaja!',
 };
 
 registerGame({
@@ -35,7 +35,25 @@ registerGame({
     }
 
     const three = getRandomN(withType, 3);
-    const oddOne = getRandom(withoutType);
+    const threeTypes = new Set(three.flatMap((p) => p.types.en));
+
+    // The odd one must not share any type that appears 2+ times among the three.
+    // This prevents ambiguity with dual-type Pokemon.
+    const typeCounts = {};
+    three.forEach((p) => p.types.en.forEach((t) => {
+      typeCounts[t] = (typeCounts[t] ?? 0) + 1;
+    }));
+    const ambiguousTypes = new Set(Object.keys(typeCounts).filter((t) => typeCounts[t] >= 2));
+
+    const validOddPool = withoutType.filter((p) =>
+      !p.types.en.some((t) => ambiguousTypes.has(t))
+    );
+
+    if (validOddPool.length === 0) {
+      return this.build({ pokemon, lang });
+    }
+
+    const oddOne = getRandom(validOddPool);
 
     const options = shuffle([...three, oddOne]).map((p) => ({
       id: p.id,

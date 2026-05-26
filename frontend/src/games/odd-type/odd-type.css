@@ -16,11 +16,11 @@
   justify-content: center;
   gap: var(--space-xs);
   background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-md);
   cursor: pointer;
-  transition: border-color var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), background var(--transition-fast), opacity var(--transition-fast);
 }
 
 .ot-card:hover:not(:disabled) {
@@ -29,13 +29,23 @@
   transform: scale(1.02);
 }
 
-.ot-card:active:not(:disabled) {
-  transform: scale(0.97);
+.ot-card:active:not(:disabled) { transform: scale(0.97); }
+.ot-card:disabled { cursor: default; }
+
+.ot-card--correct {
+  border-color: var(--color-green);
+  background: #1e3a1e;
+  box-shadow: 0 0 0 2px rgba(57,255,126,0.2);
 }
 
-.ot-card:disabled {
-  cursor: default;
-  opacity: 0.6;
+.ot-card--wrong {
+  border-color: var(--color-red);
+  background: #3a1f1f;
+  box-shadow: 0 0 0 2px rgba(255,61,61,0.2);
+}
+
+.ot-card--dim {
+  opacity: 0.4;
 }
 
 .ot-sprite {
