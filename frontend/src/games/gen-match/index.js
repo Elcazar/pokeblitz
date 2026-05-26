@@ -5,13 +5,11 @@
 import { registerGame } from '../registry.js';
 import { getRandom, shuffle, capitalize } from '../../data/pokemonHelpers.js';
 
-const GEN_REGION = ['', 'Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
-const GEN_REGION_ES = ['', 'Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Teselia', 'Kalos', 'Alola', 'Galar', 'Paldea'];
-
 const INSTRUCTIONS = {
-  en: (g) => `Pick a Gen ${g} (${GEN_REGION[g]}) Pokemon!`,
-  es: (g) => `Elige un Pokemon de Gen ${g} (${GEN_REGION_ES[g]})!`,
+  en: (g) => `Pick a Gen ${g} Pokemon!`,
+  es: (g) => `Elige un Pokemon de Gen ${g}!`,
 };
+
 registerGame({
   id: 'gen-match',
   title:         { en: 'Gen Match', es: 'Encuentra la generación' },
@@ -37,12 +35,14 @@ registerGame({
       id: correct.id,
       name: lang === 'en' ? capitalize(correct.name.en) : correct.name.es,
       spriteUrl: correct.spriteUrl,
+      isCorrect: true,
     };
 
     const wrongOptions = wrong.map((p) => ({
       id: p.id,
       name: lang === 'en' ? capitalize(p.name.en) : p.name.es,
       spriteUrl: p.spriteUrl,
+      isCorrect: false,
     }));
 
     const options = shuffle([correctOption, ...wrongOptions]);

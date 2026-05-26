@@ -46,3 +46,19 @@
   color: var(--color-text-muted);
   text-align: center;
 }
+
+.gm-card--correct {
+  border-color: var(--color-green);
+  background: #1e3a1e;
+  opacity: 1;
+}
+
+.gm-card--wrong {
+  border-color: var(--color-red);
+  background: #3a1f1f;
+  opacity: 1;
+}
+
+.gm-card--dim {
+  opacity: 0.4;
+}
