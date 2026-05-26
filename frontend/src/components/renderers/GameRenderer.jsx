@@ -16,11 +16,12 @@ import AbilityQuiz from '../../games/ability-quiz/AbilityQuiz.jsx';
 import AbilityMatch from '../../games/ability-match/AbilityMatch.jsx';
 import GenQuiz from '../../games/gen-quiz/GenQuiz.jsx';
 import GenMatch from '../../games/gen-match/GenMatch.jsx';
+import EggGroup from '../../games/egg-group/EggGroup.jsx';
 
 const RENDERERS = {
   TypeQuiz, NameFill, OddType, TypeMatchup, SuperEffective,
   Silhouette, EvoOrder, StatCompare, DexEntry, CountType,
-  AbilityQuiz, AbilityMatch, GenQuiz, GenMatch,
+  AbilityQuiz, AbilityMatch, GenQuiz, GenMatch, EggGroup,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {

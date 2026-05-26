@@ -8,7 +8,7 @@ import path from 'path';
 
 const TOTAL_POKEMON = 1025;
 const OUTPUT_PATH = './frontend/src/data/pokemon.json';
-const DELAY_MS = 1;
+const DELAY_MS = 0.1;
 
 const TYPE_TRANSLATIONS = {
   normal: 'normal', fire: 'fuego', water: 'agua', electric: 'electrico',
@@ -97,6 +97,7 @@ async function fetchPokemon(id) {
     const evolutionChain = await getEvolutionChain(species.evolution_chain.url);
     const typesEn = pokemon.types.map((t) => t.type.name);
     const typesEs = typesEn.map((t) => TYPE_TRANSLATIONS[t] ?? t);
+    const eggGroups = species.egg_groups.map((g) => g.name);
 
     // Fetch ability names in both languages
     const abilities = await Promise.all(
@@ -117,6 +118,7 @@ async function fetchPokemon(id) {
       evolutionChain,
       isLegendary: species.is_legendary,
       isMythical: species.is_mythical,
+      eggGroups,
       stats: extractStats(pokemon.stats),
       abilities,
       pokedexEntry: {

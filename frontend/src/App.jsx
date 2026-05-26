@@ -20,7 +20,7 @@ import CheckpointScreen from './screens/CheckpointScreen.jsx';
 
 // Register all microgames (side-effect imports)
 // import './games/type-quiz/index.js';
-import './games/name-fill/index.js';
+// import './games/name-fill/index.js';
 // import './games/odd-type/index.js';
 // import './games/type-matchup/index.js';
 // import './games/super-effective/index.js';
@@ -33,6 +33,7 @@ import './games/name-fill/index.js';
 // import './games/ability-match/index.js';
 // import './games/gen-quiz/index.js';
 // import './games/gen-match/index.js';
+import './games/egg-group/index.js';
 
 function Game() {
   const { lang } = useLang();
