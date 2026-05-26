@@ -1,13 +1,21 @@
 // games/stat-compare/StatCompare.jsx
 // Renderer for the stat-compare minigame.
-// Shows two Pokemon sprites side by side with a VS, and two answer buttons.
+// On disabled: correct button highlighted, wrong in red (review mode).
 
 import './stat-compare.css';
 
-export default function StatCompare({ pokemonA, pokemonB, statLabel, options, onAnswer, disabled }) {
+export default function StatCompare({ pokemonA, pokemonB, statLabel, options, correctAnswer, selectedAnswer, onAnswer, disabled }) {
+  function getBtnClass(value) {
+    const isHigher = value === true;
+    const base = isHigher ? 'sc-btn sc-btn--higher' : 'sc-btn sc-btn--lower';
+    if (!disabled) return base;
+    if (value === correctAnswer) return `${base} sc-btn--feedback-correct`;
+    if (selectedAnswer === value && value !== correctAnswer) return `${base} sc-btn--feedback-wrong`;
+    return `${base} sc-btn--feedback-dim`;
+  }
+
   return (
     <div className="sc-container">
-
       <div className="sc-matchup">
         <div className="sc-pokemon">
           <img className="sc-sprite" src={pokemonA.spriteUrl} alt={pokemonA.name} draggable={false} />
@@ -27,21 +35,20 @@ export default function StatCompare({ pokemonA, pokemonB, statLabel, options, on
 
       <div className="sc-options">
         <button
-          className="sc-btn sc-btn--higher"
+          className={getBtnClass(true)}
           onClick={() => !disabled && onAnswer(true)}
           disabled={disabled}
         >
           {options.higher} ↑
         </button>
         <button
-          className="sc-btn sc-btn--lower"
+          className={getBtnClass(false)}
           onClick={() => !disabled && onAnswer(false)}
           disabled={disabled}
         >
           {options.lower} ↓
         </button>
       </div>
-
     </div>
   );
 }

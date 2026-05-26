@@ -85,6 +85,7 @@ registerGame({
         pokemonB: { name: nameB, spriteUrl: pokemonB.spriteUrl },
         statLabel,
         options: OPTIONS[lang],
+        correctAnswer,
       },
       validate: (answer) => answer === correctAnswer,
     };

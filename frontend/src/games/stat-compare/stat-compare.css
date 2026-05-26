@@ -100,3 +100,7 @@
 
 .sc-btn:active:not(:disabled) { transform: scale(0.97); }
 .sc-btn:disabled { cursor: default; opacity: 0.6; }
+
+.sc-btn--feedback-correct { outline: 3px solid var(--color-green); outline-offset: 2px; opacity: 1 !important; }
+.sc-btn--feedback-wrong   { outline: 3px solid var(--color-red);   outline-offset: 2px; opacity: 1 !important; }
+.sc-btn--feedback-dim     { opacity: 0.4; }

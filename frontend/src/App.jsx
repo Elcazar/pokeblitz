@@ -26,7 +26,7 @@ import CheckpointScreen from './screens/CheckpointScreen.jsx';
 // import './games/super-effective/index.js';
 // import './games/silhouette/index.js';
 // import './games/evo-order/index.js';
-// import './games/stat-compare/index.js';
+import './games/stat-compare/index.js';
 // import './games/dex-entry/index.js';
 // import './games/count-type/index.js';
 // import './games/ability-quiz/index.js';
