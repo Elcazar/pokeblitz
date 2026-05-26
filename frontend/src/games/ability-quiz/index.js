@@ -23,10 +23,14 @@ registerGame({
     const pool = pokemon.filter((p) => p.abilities.length > 0);
     const target = getRandom(pool);
 
+    // All ability names this Pokemon can have (correct answers)
     const targetAbilityNames = new Set(target.abilities.map((a) => a.name.en));
+
+    // Pick one as the correct answer
     const correctAbility = target.abilities[Math.floor(Math.random() * target.abilities.length)];
     const correctName = correctAbility.name[lang];
 
+    // Wrong options: abilities that this Pokemon cannot have at all
     const wrongPool = [...new Set(
       pokemon
         .flatMap((p) => p.abilities)
@@ -49,6 +53,7 @@ registerGame({
       props: {
         spriteUrl: target.spriteUrl,
         options,
+        correctAbility: correctName,
       },
       validate: (selected) => selected === correctName,
     };

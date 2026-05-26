@@ -48,3 +48,7 @@
 
 .aq-btn:active:not(:disabled) { transform: scale(0.97); }
 .aq-btn:disabled { cursor: default; opacity: 0.6; }
+
+.aq-btn--correct { border-color: var(--color-green); color: var(--color-green); background: #1e3a1e; opacity: 1 !important; }
+.aq-btn--wrong   { border-color: var(--color-red);   color: var(--color-red);   background: #3a1f1f; opacity: 1 !important; }
+.aq-btn--dim     { opacity: 0.4; }
