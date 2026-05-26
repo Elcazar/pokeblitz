@@ -61,9 +61,9 @@ export default function GameScreen({ state, timeLimitMs, difficultyLabel, lang, 
     clearInterval(timerRef.current);
 
     if (currentGame.validate(answer)) {
-      onWin();
+      onWin(answer);
     } else {
-      onLose();
+      onLose(answer);
     }
   }, [currentGame, isResult, onWin, onLose]);
 
@@ -104,13 +104,13 @@ export default function GameScreen({ state, timeLimitMs, difficultyLabel, lang, 
 
       {/* Instruction */}
       {currentGame && (
-        <p className="game-instruction">
+        <p className="game-instruction" key={`instruction-${state.gamesPlayed}`}>
           {currentGame.instruction[lang]}
         </p>
       )}
 
       {/* Microgame renderer */}
-      <div className="game-area">
+      <div className="game-area" key={`game-${state.gamesPlayed}`}>
         <GameRenderer
           game={currentGame}
           lang={lang}

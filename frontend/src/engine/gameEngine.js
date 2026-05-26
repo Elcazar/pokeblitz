@@ -93,8 +93,8 @@ export function useGameEngine({ getNextGame, getRandomPokemon }) {
     dispatch({ type: ACTIONS.LOAD_GAME, payload: { game: firstGame } });
   }, [getNextGame]);
 
-  const onWin  = useCallback(() => dispatch({ type: ACTIONS.WIN }),  []);
-  const onLose = useCallback(() => dispatch({ type: ACTIONS.LOSE }), []);
+  const onWin  = useCallback((selectedAnswer) => dispatch({ type: ACTIONS.WIN,  payload: { selectedAnswer } }), []);
+  const onLose = useCallback((selectedAnswer) => dispatch({ type: ACTIONS.LOSE, payload: { selectedAnswer } }), []);
 
   return { state, timeLimitMs, difficultyLabel, startGame, onWin, onLose };
 }

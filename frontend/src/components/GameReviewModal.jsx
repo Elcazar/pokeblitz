@@ -15,7 +15,10 @@ export default function GameReviewModal({ entry, onClose }) {
     id: entry.gameId,
     instruction: entry.instruction,
     component: entry.component,
-    props: entry.props,
+    props: {
+      ...entry.props,
+      selectedAnswer: entry.selectedAnswer,
+    },
     validate: () => false,
   };
 
