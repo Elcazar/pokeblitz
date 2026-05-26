@@ -47,3 +47,19 @@
 
 .gq-btn:active:not(:disabled) { transform: scale(0.97); }
 .gq-btn:disabled { cursor: default; opacity: 0.6; }
+
+.gq-btn--correct {
+  background: #1e3a1e;
+  color: var(--color-green);
+  border-color: var(--color-green);
+}
+
+.gq-btn--wrong {
+  background: #3a1f1f;
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+.gq-btn--dim {
+  opacity: 0.4;
+}
