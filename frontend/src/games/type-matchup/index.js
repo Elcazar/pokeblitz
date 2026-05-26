@@ -8,7 +8,7 @@ import { getTypeColor, getTypeTextColor } from '../../data/typeColors.js';
 import { shuffle } from '../../data/pokemonHelpers.js';
 
 const EFFECTIVENESS_LABELS = {
-  super:    { en: 'Super effective', es: 'Súper eficaz' },
+  super:    { en: 'Super effective!', es: 'Super eficaz!' },
   normal:   { en: 'Normal',           es: 'Normal' },
   not_very: { en: 'Not very effective', es: 'Poco eficaz' },
   immune:   { en: 'No effect',        es: 'No afecta' },
@@ -68,6 +68,7 @@ registerGame({
         attacking,
         defending,
         options,
+        correctKey,
         lang,
       },
       validate: (selectedKey) => selectedKey === correctKey,
