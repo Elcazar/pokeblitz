@@ -28,7 +28,7 @@
 }
 
 .de-entry-text {
-  font-size: 22px;
+  font-size: 17px;
   line-height: 1.7;
   color: var(--color-text);
   text-align: center;
@@ -74,3 +74,7 @@
 
 .de-btn:active:not(:disabled) { transform: scale(0.97); }
 .de-btn:disabled { cursor: default; opacity: 0.6; }
+
+.de-btn--correct { outline: 3px solid var(--color-green); outline-offset: 2px; opacity: 1 !important; }
+.de-btn--wrong   { outline: 3px solid var(--color-red);   outline-offset: 2px; opacity: 1 !important; }
+.de-btn--dim     { opacity: 0.4; }

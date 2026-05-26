@@ -1,14 +1,14 @@
 // games/dex-entry/DexEntry.jsx
 // Renderer for the dex-entry minigame.
-// Shows a censored Pokedex entry and 4 Pokemon options with type colors.
 // On answer, replaces the entry with the correct Pokemon's sprite.
+// On disabled: correct in green, wrong selection in red (review mode).
 
 import { useState } from 'react';
 import { getTypeColor, getTypeTextColor } from '../../data/typeColors.js';
 import './dex-entry.css';
 
-export default function DexEntry({ entry, options, correctSpriteUrl, onAnswer, disabled }) {
-  const [answered, setAnswered] = useState(false);
+export default function DexEntry({ entry, options, correctSpriteUrl, selectedAnswer, onAnswer, disabled }) {
+  const [answered, setAnswered] = useState(disabled);
 
   function handleAnswer(option) {
     if (disabled) return;
@@ -16,9 +16,16 @@ export default function DexEntry({ entry, options, correctSpriteUrl, onAnswer, d
     setTimeout(() => onAnswer(option.id), 400);
   }
 
+  function getBtnClass(option) {
+    const base = 'de-btn';
+    if (!disabled) return base;
+    if (option.isCorrect) return `${base} de-btn--correct`;
+    if (selectedAnswer === option.id && !option.isCorrect) return `${base} de-btn--wrong`;
+    return `${base} de-btn--dim`;
+  }
+
   return (
     <div className="de-container">
-
       <div className="de-entry">
         {answered ? (
           <img
@@ -44,7 +51,7 @@ export default function DexEntry({ entry, options, correctSpriteUrl, onAnswer, d
           return (
             <button
               key={option.id}
-              className="de-btn"
+              className={getBtnClass(option)}
               style={{ '--type-bg': bg, '--type-color': color }}
               onClick={() => handleAnswer(option)}
               disabled={disabled}
@@ -54,7 +61,6 @@ export default function DexEntry({ entry, options, correctSpriteUrl, onAnswer, d
           );
         })}
       </div>
-
     </div>
   );
 }
