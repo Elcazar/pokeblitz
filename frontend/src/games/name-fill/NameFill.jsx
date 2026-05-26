@@ -1,5 +1,4 @@
 // games/name-fill/NameFill.jsx
-// Renderer for the name-fill minigame.
 // In review mode (disabled=true), shows correct/wrong colors per cell.
 
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -117,7 +116,6 @@ export default function NameFill({ spriteUrl, hint, displayName, selectedAnswer,
       const isCursor = blankIndex === cursor;
       return `nf-cell nf-cell--blank ${typedChar ? 'nf-cell--typed' : ''} ${isCursor ? 'nf-cell--cursor' : ''}`;
     }
-    // Review mode
     if (!typedChar) return 'nf-cell nf-cell--blank';
     const isCorrect = typedChar === correctChars[blankIndex];
     return `nf-cell nf-cell--blank ${isCorrect ? 'nf-cell--correct' : 'nf-cell--wrong'}`;
@@ -158,16 +156,6 @@ export default function NameFill({ spriteUrl, hint, displayName, selectedAnswer,
           );
         })}
       </div>
-
-      {!disabled && (
-        <button
-          className="nf-submit"
-          onClick={() => { const word = buildAnswer(typed, cells); if (word.includes('')) return; onAnswer(word); }}
-          disabled={typed.some((c) => !c)}
-        >
-          OK
-        </button>
-      )}
     </div>
   );
 }
