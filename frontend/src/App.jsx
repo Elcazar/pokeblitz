@@ -33,7 +33,9 @@ import CheckpointScreen from './screens/CheckpointScreen.jsx';
 // import './games/ability-match/index.js';
 // import './games/gen-quiz/index.js';
 // import './games/gen-match/index.js';
-import './games/egg-group/index.js';
+// import './games/egg-group/index.js';
+// import './games/bst-compare/index.js';
+import './games/highest-stat/index.js';
 
 function Game() {
   const { lang } = useLang();

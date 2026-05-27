@@ -1,0 +1,54 @@
+/* games/highest-stat/highest-stat.css */
+
+.hs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+.hs-sprite {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+  animation: sprite-bounce 0.3s ease both;
+}
+
+.hs-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 380px;
+}
+
+.hs-btn {
+  padding: 14px 8px;
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: center;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.hs-btn:hover:not(:disabled) {
+  background: var(--color-bg-card);
+  border-color: var(--color-yellow);
+  color: var(--color-yellow);
+  transform: translateY(-1px);
+}
+
+.hs-btn:active:not(:disabled) { transform: scale(0.97); }
+.hs-btn:disabled { cursor: default; }
+
+.hs-btn--correct { background: #1e3a1e; color: var(--color-green); border-color: var(--color-green); opacity: 1 !important; }
+.hs-btn--wrong   { background: #3a1f1f; color: var(--color-red);   border-color: var(--color-red);   opacity: 1 !important; }
+.hs-btn--dim     { opacity: 0.4; }

@@ -17,11 +17,13 @@ import AbilityMatch from '../../games/ability-match/AbilityMatch.jsx';
 import GenQuiz from '../../games/gen-quiz/GenQuiz.jsx';
 import GenMatch from '../../games/gen-match/GenMatch.jsx';
 import EggGroup from '../../games/egg-group/EggGroup.jsx';
+import BSTCompare from '../../games/bst-compare/BSTCompare.jsx';
+import HighestStat from '../../games/highest-stat/HighestStat.jsx';
 
 const RENDERERS = {
   TypeQuiz, NameFill, OddType, TypeMatchup, SuperEffective,
   Silhouette, EvoOrder, StatCompare, DexEntry, CountType,
-  AbilityQuiz, AbilityMatch, GenQuiz, GenMatch, EggGroup,
+  AbilityQuiz, AbilityMatch, GenQuiz, GenMatch, EggGroup, BSTCompare, HighestStat,
 };
 
 export default function GameRenderer({ game, lang, onAnswer, disabled }) {
